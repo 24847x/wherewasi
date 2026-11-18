@@ -1,0 +1,43 @@
+<idea-plugin>
+    <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.plugins.terminal</depends>
+    <icon>pluginIcon.svg</icon>
+
+    <description><![CDATA[
+        <p>Send references to selected code directly to the active JetBrains Terminal tab.</p>
+
+        <p>Select code, press the shortcut, and paste a reference into the current terminal session without switching windows or typing the file path manually.</p>
+
+        <h2>How to use</h2>
+        <ol>
+            <li>Select any code in the editor.</li>
+            <li>Press <b>Ctrl+Alt+K</b> (macOS: <b>⌘⌥K</b>), or right-click → <b>Send to Terminal</b>.</li>
+            <li>The active Terminal tab receives a reference such as <code>@src/UserService.kt#L42-58</code>.</li>
+            <li>The Terminal tool window is brought forward; the reference is pasted but not submitted.</li>
+        </ol>
+        <p>You can also send files and folders: select them in the <b>Project</b> view (<b>⌘1</b> / <b>Alt+1</b>) and use the same shortcut or context-menu action.</p>
+        <p>The reference is pasted without pressing Enter, so you can review it or add more input before submitting.</p>
+
+        <h2>How to change the shortcut</h2>
+        <ol>
+            <li>Open <b>Settings</b> → <b>Keymap</b>.</li>
+            <li>Search for <b>Send to Terminal</b>.</li>
+            <li>Double-click → <b>Add Keyboard Shortcut</b> → press your keys → OK.</li>
+        </ol>
+
+        <h2>Requirements</h2>
+        <ul>
+            <li>The built-in JetBrains Terminal plugin must be enabled.</li>
+            <li>Works in JetBrains IDEs version 2026.2 or newer: IntelliJ IDEA, PyCharm, WebStorm, PhpStorm, GoLand, CLion, Rider, RubyMine, RustRover, DataGrip, Android Studio.</li>
+            <li>Supports Remote Development (JetBrains Gateway / JetBrains Client); install the plugin on the remote IDE.</li>
+        </ul>
+    ]]></description>
+
+    <!-- Split for Remote Development: the frontend module (Terminal UI) loads in JetBrains Client,
+         the backend module (action, editor and project paths) in the remote IDE. A regular IDE loads both. -->
+    <content>
+        <module name="where-was-i-plugin.shared" loading="required"/>
+        <module name="where-was-i-plugin.frontend"/>
+        <module name="where-was-i-plugin.backend"/>
+    </content>
+</idea-plugin>

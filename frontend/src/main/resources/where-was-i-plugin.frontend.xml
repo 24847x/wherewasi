@@ -1,0 +1,13 @@
+<idea-plugin>
+    <dependencies>
+        <plugin id="org.jetbrains.plugins.terminal"/>
+        <module name="intellij.platform.frontend"/>
+        <module name="intellij.terminal.frontend"/>
+        <module name="where-was-i-plugin.shared"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="WhereWasI" displayType="BALLOON"/>
+        <postStartupActivity implementation="com.loudyo.wherewasi.frontend.TerminalPasteListenerStarter"/>
+    </extensions>
+</idea-plugin>

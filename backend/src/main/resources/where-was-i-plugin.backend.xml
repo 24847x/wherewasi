@@ -1,0 +1,32 @@
+<idea-plugin>
+    <dependencies>
+        <module name="intellij.platform.backend"/>
+        <module name="intellij.platform.kernel.backend"/>
+        <module name="intellij.platform.rpc.backend"/>
+        <module name="where-was-i-plugin.shared"/>
+    </dependencies>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <platform.rpc.backend.remoteApiProvider implementation="com.loudyo.wherewasi.backend.TerminalPasteApiProvider"/>
+    </extensions>
+
+    <actions>
+        <action
+            id="WhereWasI"
+            class="com.loudyo.wherewasi.backend.SendToTerminalAction"
+            text="Send to Terminal"
+            description="Paste a reference to selected code, files or folders into the active Terminal tab">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <keyboard-shortcut
+                keymap="$default"
+                first-keystroke="ctrl alt K"/>
+            <keyboard-shortcut
+                keymap="Mac OS X"
+                first-keystroke="meta alt K"/>
+            <keyboard-shortcut
+                keymap="Mac OS X 10.5+"
+                first-keystroke="meta alt K"/>
+        </action>
+    </actions>
+</idea-plugin>
